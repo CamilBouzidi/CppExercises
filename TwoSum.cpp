@@ -19,18 +19,21 @@ vector<int> twoSum(std::vector<int>& nums, int target) {
 	// O(n) complexity. Thank you to www.nileshblog.com for the help
 	// If current number's complement is present in hashmap, return current's and complement's indices
 	// else, add current as key and index as value to hashmap
-	unordered_map<int, int> seen;
-	int size = nums.size();
-	int num, complement = 0;
-	for (int i = 0; i < size; i++) {
-		num = nums[i];
-		int complement = target - num;
-		if (seen.count(complement)) {
-			std::vector<int> solution(seen.at(0), i);
-			return solution;
-		}
-		seen[num] = i;
-	}
-
-	return {};
-}s
+    unordered_map<int, int> seen;
+    int size = nums.size();
+    int num, complement = 0;
+    for (int i = 0; i < size; i++) {
+        num = nums[i];
+        // cout << "num" << num << "at i" << i << "\n";
+        int complement = target - num;
+        // cout << "current complement: " << complement << "\n";
+        if (seen.count(complement)) {
+            // cout << "complement FOUND: " << seen.at(complement);
+            std::vector<int> solution{ seen.at(complement), i };
+            // cout << "solution: " << solution.size();
+            return solution;
+        }
+        seen[num] = i;
+    }
+    return {};
+}
