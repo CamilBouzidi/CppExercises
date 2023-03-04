@@ -1,6 +1,8 @@
 // Maximum Subarray
 // Thank you Leetcode for the problem
-// Given an integer array nums, find the subarray with the largest sum, and return its sum.
+// Given an array of integers numsand an integer target, return indices of the two numbers such that they add up to target.
+// You may assume that each input would have exactly one solution, and you may not use the same element twice.
+// You can return the answer in any order.
 #include <iostream>
 #include <vector>
 #include <algorithm>
