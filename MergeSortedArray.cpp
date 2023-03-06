@@ -15,6 +15,8 @@ and the last n elements are set to 0 and should be ignored. nums2 has a length o
 using namespace std;
 
 void merge(vector<int>& nums1, int m, vector<int>& nums2, int n);
+void mergeOnNums1(vector<int>& nums1, int m, vector<int>& nums2, int n);
+void mergeOnNums1Efficient(vector<int>& nums1, int m, vector<int>& nums2, int n);
 
 int main()
 {
@@ -82,4 +84,38 @@ void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
         std::cout << j << ' ';
     }
 
+}
+
+void mergeOnNums1(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+    // Use sort and its O(mlogm)
+    for (int i = 0; i < n; i++) {
+        nums1[m + i] = nums2[i];
+    }
+    sort(nums1.begin(), nums1.end());
+}
+
+void mergeOnNumsEfficient(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+    // Thank you to Leodicap99 for the explanation
+    // Two pointer approach in O(n+m)
+
+    int i = m - 1, j = n - 1, k = m + n - 1;
+    while (i >= 0 && j >= 0)
+    {
+        if (nums1[i] > nums2[j])
+        {
+            nums1[k] = nums1[i];
+            i--;
+            k--;
+        }
+        else
+        {
+            nums1[k] = nums2[j];
+            j--;
+            k--;
+        }
+    }
+    while (i >= 0)
+        nums1[k--] = nums1[i--];
+    while (j >= 0)
+        nums1[k--] = nums2[j--];
 }
